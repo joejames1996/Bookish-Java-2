@@ -2,8 +2,9 @@ package org.softwire.training.bookish.databaseModels;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class User
 {
@@ -15,7 +16,8 @@ public class User
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateOfBirth;
-//    private String formattedDateOfBirth;
+
+    public static List<User> allUsers = new ArrayList<>();
 
     public void setUserId(int userId)
     {
@@ -67,28 +69,24 @@ public class User
         return password;
     }
 
-    public void setDateOfBirth(Date dateOfBirth)
-    {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateOfBirth);
-//        this.dateOfBirth = dateFormat.format(dateOfBirth);
-
-        this.dateOfBirth = dateOfBirth;
-    }
+    public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
     public Date getDateOfBirth()
     {
         return dateOfBirth;
     }
 
-//    public void setFormattedDateOfBirth(Date dateOfBirth)
-//    {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        this.formattedDateOfBirth = dateFormat.format(dateOfBirth);
-//    }
-//
-//    public String getFormattedDateOfBirth()
-//    {
-//        return formattedDateOfBirth;
-//    }
+    public static User getUserFromId(int userId)
+    {
+        User user = new User();
+        for(User u : allUsers)
+        {
+            if(u.userId == userId)
+            {
+                user = u;
+                break;
+            }
+        }
+        return user;
+    }
 }

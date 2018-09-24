@@ -37,6 +37,7 @@ public class IndexController {
     ModelAndView books() {
 
         List<Book> allBooks = bookService.getAllBooks();
+        Book.allBooks = allBooks;
 
         BooksPageModel booksPageModel = new BooksPageModel();
         booksPageModel.books = allBooks;
@@ -65,6 +66,7 @@ public class IndexController {
     ModelAndView users() {
 
         List<User> allUsers = userService.getAllUsers();
+        User.allUsers = allUsers;
 
         UsersPageModel usersPageModel = new UsersPageModel();
         usersPageModel.users = allUsers;
