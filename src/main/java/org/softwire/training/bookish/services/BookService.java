@@ -7,11 +7,11 @@ import java.util.List;
 
 @Service
 public class BookService {
-    private String hostname = "localhost";
+    private String hostname = "10.210.11.106:3306";
     private String database = "bookish";
     private String user = "bookish";
-    private String password = "bookish";
-    private String connectionString = "jdbc:mysql://" + hostname + "/" + database + "?user=" + user + "&password=" + password + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT&useSSL=false";
+    private String password = "4q1WIfvybxBN";
+    private String connectionString = "jdbc:mysql://" + hostname + "/" + database + "?user=" + user + "&password=" + password + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true";
 
     private Jdbi jdbi = Jdbi.create(connectionString);
 

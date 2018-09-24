@@ -22,17 +22,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="book : ${model.books}">
-                        <td th:text="${book.author}"></td>
-                        <td th:text="${book.title}"></td>
+                    <tr th:each="bookId : ${model.books}">
+                        <td th:text="${bookId.author}"></td>
+                        <td th:text="${bookId.title}"></td>
                         <td>
-                            <a th:href="${'/books/delete?bookId=' + book.id}">Delete</a>
+                            <a th:href="${'/books/delete?bookId=' + bookId.bookId}">Delete</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <h2>Add a book:</h2>
+            <h2>Add a bookId:</h2>
             <form id="messageForm" th:action="@{/books/add}" method="post">
                 <div>
                     <label>
@@ -47,7 +47,7 @@
                     </label>
                 </div>
                 <div>
-                    <input type="submit" value="Add book" />
+                    <input type="submit" value="Add bookId" />
                 </div>
             </form>
 
