@@ -28,26 +28,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <!--<tr th:each="bookId : ${model.books}">-->
-                            <!--<td th:text="${bookId.title}"></td>-->
-                            <!--<td th:text="${bookId.subtitle}"></td>-->
-                            <!--<td th:text="${bookId.author}"></td>-->
-                            <!--<td th:text="${bookId.isbn}"></td>-->
-                            <!--<td>-->
-                                <!--<a th:href="${'/books/delete?bookId=' + bookId.bookId}">-->
-                                    <!--<i class="fas fa-trash"></i>-->
-                                <!--</a>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-
-                        <tr>
-                            <td>Where's Geoff?</td>
-                            <td>Jon Johnson</td>
-                            <td>1231231231234</td>
-                            <td>Timmy</td>
-                            <td>Martins</td>
-                            <td>2018-10-13</td>
-                            <td><a href="#"><i class="fas fa-check"></i></a></td>
+                        <tr th:each="bookingID : ${model.allBookings}">
+                            <td th:text="${bookingID.title}"></td>
+                            <td th:text="${bookingID.author}"></td>
+                            <td th:text="${bookingID.author}"></td>
+                            <td th:text="${bookingID.firstName}"></td>
+                            <td th:text="${bookingID.surname}"></td>
+                            <td th:text="${bookingID.dateDue}"></td>
+                            <td>
+                                <a th:href="${'/books/delete?bookId=' + bookId.bookId}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
