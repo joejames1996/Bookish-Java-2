@@ -7,11 +7,11 @@ import java.sql.*;
 import java.util.List;
 
 public class Main {
-    private static String hostname = "localhost";
+    private static String hostname = "10.210.11.106:3306";
     private static String database = "bookish";
     private static String user = "bookish";
-    private static String password = "bookish";
-    private static String connectionString = "jdbc:mysql://" + hostname + "/" + database + "?user=" + user + "&password=" + password + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT&useSSL=false";
+    private static String password = "4q1WIfvybxBN";
+    private static String connectionString = "jdbc:mysql://" + hostname + "/" + database + "?user=" + user + "&password=" + password + "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true";
 
     public static void main(String[] args) throws SQLException {
         System.out.println("JDBC method...");
@@ -29,9 +29,11 @@ public class Main {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                int bookId = resultSet.getInt("id");
+                int bookId = resultSet.getInt("bookId");
                 String author = resultSet.getString("author");
                 String title = resultSet.getString("title");
+                String subtitle = resultSet.getString("subtitle");
+                String isbn = resultSet.getString("isbn");
 
                 System.out.println("Book ID: " + bookId + " has author: '" + author + "' and title: '" + title + "'");
             }
@@ -48,7 +50,7 @@ public class Main {
         );
 
         for (Book book: books) {
-            System.out.println("Book ID: " + book.getId() + " has author: '" + book.getAuthor() + "' and title: '" + book.getTitle() + "'");
+            System.out.println("Book ID: " + book.getBookId() + " has author: '" + book.getAuthor() + "' and title: '" + book.getTitle() + "'");
         }
     }
 }
