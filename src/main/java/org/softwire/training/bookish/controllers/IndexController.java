@@ -24,6 +24,8 @@ public class IndexController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
     private UserService userService;
 
     @RequestMapping("/")

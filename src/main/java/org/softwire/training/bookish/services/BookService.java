@@ -27,7 +27,7 @@ public class BookService {
 
     public void addBook(Book book) {
         jdbi.withHandle(handle ->
-            handle.createUpdate("INSERT INTO books (author, title) VALUES (:author, :title)")
+            handle.createUpdate("INSERT INTO books (title, subtitle, author, isbn) VALUES (:title, :subtitle, :author, :isbn)")
                 .bindBean(book)
                 .execute()
         );
