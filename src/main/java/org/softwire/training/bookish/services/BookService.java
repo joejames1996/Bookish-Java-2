@@ -35,7 +35,7 @@ public class BookService {
 
     public void deleteBook(int bookId) {
         jdbi.withHandle(handle ->
-            handle.createUpdate("DELETE FROM books WHERE id = :id")
+            handle.createUpdate("DELETE FROM books WHERE bookId = :id")
                 .bind("id", bookId)
                 .execute()
         );

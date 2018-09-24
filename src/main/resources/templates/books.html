@@ -7,49 +7,63 @@
     </head>
     <body>
         <div layout:fragment="content" class="container body-content">
-            <div class="jumbotron">
-                <h1>Bookish</h1>
-                <p class="lead">Welcome to the Bookish application</p>
+
+            <!-- All books -->
+            <div class="card">
+                <div class="card-header"><h2>All books</h2></div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Subtitle</th>
+                            <th>Author</th>
+                            <th>ISBN</th>
+                            <th>Delete?</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="bookId : ${model.books}">
+                            <td th:text="${bookId.title}"></td>
+                            <td th:text="${bookId.subtitle}"></td>
+                            <td th:text="${bookId.author}"></td>
+                            <td th:text="${bookId.isbn}"></td>
+                            <td>
+                                <a th:href="${'/books/delete?bookId=' + bookId.bookId}">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <h2>Our books:</h2>
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Author</th>
-                        <th>Title</th>
-                        <th>Delete?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="bookId : ${model.books}">
-                        <td th:text="${bookId.author}"></td>
-                        <td th:text="${bookId.title}"></td>
-                        <td>
-                            <a th:href="${'/books/delete?bookId=' + bookId.bookId}">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Add a bookId:</h2>
-            <form id="messageForm" th:action="@{/books/add}" method="post">
-                <div>
-                    <label>
-                        Author:
-                        <input type="text" name="author">
-                    </label>
+            <!-- Add a new book -->
+            <div class="card">
+                <div class="card-header"><h2>Add a book</h2></div>
+                <div class="card-body">
+                    <form id="messageForm" th:action="@{/books/add}" method="post">
+                        <div class="form-group">
+                            <label>Title:</label>
+                            <input class="form-control" type="text" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label>Subtitle:</label>
+                            <input class="form-control" type="text" name="subtitle">
+                        </div>
+                        <div class="form-group">
+                            <label>Author:</label>
+                            <input class="form-control" type="text" name="author">
+                        </div>
+                        <div class="form-group">
+                            <label>ISBN:</label>
+                            <input class="form-control" type="text" name="isbn">
+                        </div>
+                        <div>
+                            <input class="btn btn-primary" type="submit" value="Add bookId" />
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <label>
-                        Title:
-                        <input type="text" name="title">
-                    </label>
-                </div>
-                <div>
-                    <input type="submit" value="Add bookId" />
-                </div>
-            </form>
+            </div>
 
         </div>
     </body>
