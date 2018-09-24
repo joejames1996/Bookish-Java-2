@@ -1,8 +1,11 @@
 package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.databaseModels.Book;
+import org.softwire.training.bookish.databaseModels.User;
 import org.softwire.training.bookish.services.BookService;
+import org.softwire.training.bookish.services.UserService;
 import org.softwire.training.bookish.viewModels.BooksPageModel;
+import org.softwire.training.bookish.viewModels.UsersPageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +24,7 @@ public class IndexController {
 
     @Autowired
     private BookService bookService;
+    private UserService userService;
 
     @RequestMapping("/")
     ModelAndView home() {
@@ -52,6 +56,34 @@ public class IndexController {
         bookService.deleteBook(bookId);
 
         return new RedirectView("/books");
+    }
+
+
+    @RequestMapping("/users")
+    ModelAndView users() {
+
+        List<User> allUsers = userService.getAllUsers();
+
+        UsersPageModel usersPageModel = new UsersPageModel();
+        usersPageModel.users = allUsers;
+
+        return new ModelAndView("users", "model", usersPageModel);
+    }
+
+    @RequestMapping("/users/add")
+    RedirectView addUser(@ModelAttribute User user) {
+
+        userService.addUser(user);
+
+        return new RedirectView("/users");
+    }
+
+    @RequestMapping("/users/delete")
+    RedirectView deleteUser(@RequestParam int userId) {
+
+        userService.deleteUser(userId);
+
+        return new RedirectView("/users");
     }
 
 }
