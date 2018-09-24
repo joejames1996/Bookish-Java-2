@@ -67,13 +67,21 @@
                         <div class="modal-body">
                             <form id="messageForm" th:action="@{/books/add}" method="post">
                                 <div class="form-group">
-                                    <label>Book:</label>
-                                    <input class="form-control" type="text" name="title">
+                                    <label for="selectBook">Book:</label>
+                                    <select class="form-control" id="selectBook">
+                                        <option>Book A</option>
+                                        <option>Book B</option>
+                                    </select>
                                 </div>
+
                                 <div class="form-group">
-                                    <label>User:</label>
-                                    <input class="form-control" type="text" name="subtitle">
+                                    <label for="selectUser">User:</label>
+                                    <select class="form-control" id="selectUser">
+                                        <option>User A</option>
+                                        <option>User B</option>
+                                    </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label>Due date:</label>
                                     <input class="form-control" type="date" name="author">
