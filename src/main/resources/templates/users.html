@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+    <head>
+        <title>Bookish - Home</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container body-content">
+
+            <!-- All users -->
+            <div class="card">
+                <div class="card-header"><h2>All users</h2></div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Forename</th>
+                            <th>Surname</th>
+                            <th>Username</th>
+                            <th>Date of Birth</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="userId : ${model.users}">
+                            <td th:text="${userId.firstName}"></td>
+                            <td th:text="${userId.surname}"></td>
+                            <td th:text="${userId.userName}"></td>
+                            <td th:text="${userId.dateOfBirth}"></td>
+                            <td>
+                                <a th:href="${'/users/delete?userId=' + userId.userId}">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Add a new user -->
+            <div class="card">
+                <div class="card-header"><h2>Add a user</h2></div>
+                <div class="card-body">
+                    <form id="messageForm" th:action="@{/users/add}" method="post">
+                        <div class="form-group">
+                            <label>Forename:</label>
+                            <input class="form-control" type="text" name="firstName">
+                        </div>
+                        <div class="form-group">
+                            <label>Surname:</label>
+                            <input class="form-control" type="text" name="surname">
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth:</label>
+                            <input class="form-control" type="text" name="dateOfBirth">
+                        </div>
+                        <div class="form-group">
+                            <label>Username:</label>
+                            <input class="form-control" type="text" name="userName">
+                        </div>
+                        <div class="form-group">
+                            <label>Password:</label>
+                            <input class="form-control" type="text" name="password">
+                        </div>
+                        <div>
+                            <input class="btn btn-primary" type="submit" value="Add userId" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
