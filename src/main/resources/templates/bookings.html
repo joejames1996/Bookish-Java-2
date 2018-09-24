@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+    <head>
+        <title>Bookish - Bookings</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container body-content">
+
+            <!-- All books -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="float-left">Current bookings</h2>
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#newBookingModal"><i class="fas fa-plus"></i> New Booking</button>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>ISBN</th>
+                            <th>Forename</th>
+                            <ht>Surname</ht>
+                            <th>Due date</th>
+                            <th>Returned?</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--<tr th:each="bookId : ${model.books}">-->
+                            <!--<td th:text="${bookId.title}"></td>-->
+                            <!--<td th:text="${bookId.subtitle}"></td>-->
+                            <!--<td th:text="${bookId.author}"></td>-->
+                            <!--<td th:text="${bookId.isbn}"></td>-->
+                            <!--<td>-->
+                                <!--<a th:href="${'/books/delete?bookId=' + bookId.bookId}">-->
+                                    <!--<i class="fas fa-trash"></i>-->
+                                <!--</a>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+
+                        <tr>
+                            <td>Where's Geoff?</td>
+                            <td>Jon Johnson</td>
+                            <td>1231231231234</td>
+                            <td>Timmy</td>
+                            <td>Martins</td>
+                            <td>2018-10-13</td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div id="newBookingModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="float-left">Add Booking</h2>
+                            <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="messageForm" th:action="@{/books/add}" method="post">
+                                <div class="form-group">
+                                    <label>Book:</label>
+                                    <input class="form-control" type="text" name="title">
+                                </div>
+                                <div class="form-group">
+                                    <label>User:</label>
+                                    <input class="form-control" type="text" name="subtitle">
+                                </div>
+                                <div class="form-group">
+                                    <label>Due date:</label>
+                                    <input class="form-control" type="date" name="author">
+                                </div>
+                                <div>
+                                    <input class="btn btn-primary float-right" type="submit" value="Add Booking" />
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
