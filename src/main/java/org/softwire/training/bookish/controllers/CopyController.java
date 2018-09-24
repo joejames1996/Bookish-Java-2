@@ -24,6 +24,7 @@ public class CopyController
     ModelAndView copies() {
 
         List<Copy> allCopies = copyService.getAllCopies();
+        Copy.allCopies = allCopies;
 
         CopiesPageModel copiesPageModel = new CopiesPageModel();
         copiesPageModel.copies = allCopies;

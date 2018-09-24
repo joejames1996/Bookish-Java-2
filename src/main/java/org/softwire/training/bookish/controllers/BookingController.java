@@ -1,7 +1,13 @@
 package org.softwire.training.bookish.controllers;
 
+import org.softwire.training.bookish.databaseModels.Book;
 import org.softwire.training.bookish.databaseModels.Booking;
+import org.softwire.training.bookish.databaseModels.Copy;
+import org.softwire.training.bookish.databaseModels.User;
+import org.softwire.training.bookish.services.BookService;
 import org.softwire.training.bookish.services.BookingService;
+import org.softwire.training.bookish.services.CopyService;
+import org.softwire.training.bookish.services.UserService;
 import org.softwire.training.bookish.viewModels.BookingsPageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +29,7 @@ public class BookingController
     ModelAndView bookings() {
 
         List<Booking> allBookings = bookingService.getAllBookings();
+        Booking.allBookings = allBookings;
 
         BookingsPageModel bookingsPageModel = new BookingsPageModel();
         bookingsPageModel.bookings = allBookings;

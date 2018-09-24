@@ -20,74 +20,10 @@ import java.util.List;
  * Controller for the index page
  */
 @Controller
-public class IndexController {
-
-    @Autowired
-    private BookService bookService;
-
-    @Autowired
-    private UserService userService;
-
+public class IndexController
+{
     @RequestMapping("/")
     ModelAndView home() {
         return new ModelAndView("index");
     }
-
-    @RequestMapping("/books")
-    ModelAndView books() {
-
-        List<Book> allBooks = bookService.getAllBooks();
-        Book.allBooks = allBooks;
-
-        BooksPageModel booksPageModel = new BooksPageModel();
-        booksPageModel.books = allBooks;
-
-        return new ModelAndView("books", "model", booksPageModel);
-    }
-
-    @RequestMapping("/books/add")
-    RedirectView addBook(@ModelAttribute Book book) {
-
-        bookService.addBook(book);
-
-        return new RedirectView("/books");
-    }
-
-    @RequestMapping("/books/delete")
-    RedirectView deleteBook(@RequestParam int bookId) {
-
-        bookService.deleteBook(bookId);
-
-        return new RedirectView("/books");
-    }
-
-
-    @RequestMapping("/users")
-    ModelAndView users() {
-
-        List<User> allUsers = userService.getAllUsers();
-        User.allUsers = allUsers;
-
-        UsersPageModel usersPageModel = new UsersPageModel();
-        usersPageModel.users = allUsers;
-
-        return new ModelAndView("users", "model", usersPageModel);
-    }
-
-    @RequestMapping("/users/add")
-    RedirectView addUser(@ModelAttribute User user) {
-
-        userService.addUser(user);
-
-        return new RedirectView("/users");
-    }
-
-    @RequestMapping("/users/delete")
-    RedirectView deleteUser(@RequestParam int userId) {
-
-        userService.deleteUser(userId);
-
-        return new RedirectView("/users");
-    }
-
 }

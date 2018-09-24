@@ -3,6 +3,7 @@ package org.softwire.training.bookish.databaseModels;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class Booking
 {
@@ -17,6 +18,8 @@ public class Booking
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateDue;
+
+    public static List<Booking> allBookings;
 
     public void setBookingId(int bookingId)
     {
