@@ -16,7 +16,7 @@
                 </div>
                 <div class="card-body">
                     <table class="table">
-                        <thead class="thead-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th>Title</th>
                                 <th>Author</th>
@@ -37,7 +37,7 @@
                                 <td th:text="${bookingId.dateDue}"></td>
                                 <td>
                                     <a th:href="${'/bookings/delete?bookingId=' + bookingId.bookingId}">
-                                        <i class="fas fa-trash"></i>
+                                        <i class="fas fa-trash text-danger"></i>
                                     </a>
                                 </td>
                             </tr>

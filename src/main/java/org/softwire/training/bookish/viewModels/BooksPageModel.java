@@ -1,9 +1,9 @@
 package org.softwire.training.bookish.viewModels;
 
-import org.softwire.training.bookish.databaseModels.BookQuery;
+import org.softwire.training.bookish.databaseModels.Book;
 
 import java.util.List;
 
 public class BooksPageModel {
-    public List<BookQuery> copies;
+    public List<Book> books;
 }
