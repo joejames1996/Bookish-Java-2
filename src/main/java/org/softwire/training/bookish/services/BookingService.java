@@ -24,7 +24,7 @@ public class BookingService
                         "FROM bookish.bookings " +
                         "JOIN bookish.copies ON copies.copyId = bookings.copyId " +
                         "JOIN bookish.books ON books.bookId = copies.bookId " +
-                        "JOIN bookish.users ON users.userId = bookings.userId")
+                        "JOIN bookish.users ON users.userId = bookings.userId;")
                         .mapToBean(BookingQuery.class)
                         .list()
         );
