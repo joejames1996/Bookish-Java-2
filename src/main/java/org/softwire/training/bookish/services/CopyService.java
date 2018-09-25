@@ -2,6 +2,7 @@ package org.softwire.training.bookish.services;
 
 import org.jdbi.v3.core.Jdbi;
 import org.softwire.training.bookish.databaseModels.Copy;
+import org.softwire.training.bookish.databaseModels.CopyQuery;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +18,10 @@ public class CopyService
 
     private Jdbi jdbi = Jdbi.create(connectionString);
 
-    public List<Copy> getAllCopies() {
-        List<Copy> copies = jdbi.withHandle(handle ->
+    public List<CopyQuery> getAllCopies() {
+        List<CopyQuery> copies = jdbi.withHandle(handle ->
                 handle.createQuery("SELECT * FROM copies")
-                        .mapToBean(Copy.class)
+                        .mapToBean(CopyQuery.class)
                         .list()
         );
 

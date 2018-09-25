@@ -1,6 +1,7 @@
 package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.databaseModels.Book;
+import org.softwire.training.bookish.databaseModels.CopyQuery;
 import org.softwire.training.bookish.services.BookService;
 import org.softwire.training.bookish.viewModels.BooksPageModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,10 @@ public class BookController
     @RequestMapping("/books")
     ModelAndView books() {
 
-        List<Book> allBooks = bookService.getAllBooks();
-        Book.allBooks = allBooks;
+        List<CopyQuery> allCopies = bookService.getAllBooks();
 
         BooksPageModel booksPageModel = new BooksPageModel();
-        booksPageModel.books = allBooks;
+        booksPageModel.copies = allCopies;
 
         return new ModelAndView("books", "model", booksPageModel);
     }

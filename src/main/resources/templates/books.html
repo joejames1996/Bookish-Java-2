@@ -22,17 +22,19 @@
                                 <th>Subtitle</th>
                                 <th>Author</th>
                                 <th>ISBN</th>
+                                <th>Barcode</th>
                                 <th>Delete?</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="bookId : ${model.books}">
-                                <td th:text="${bookId.title}"></td>
-                                <td th:text="${bookId.subtitle}"></td>
-                                <td th:text="${bookId.author}"></td>
-                                <td th:text="${bookId.isbn}"></td>
+                            <tr th:each="copyId : ${model.copies}">
+                                <td th:text="${copyId.title}"></td>
+                                <td th:text="${copyId.subtitle}"></td>
+                                <td th:text="${copyId.author}"></td>
+                                <td th:text="${copyId.isbn}"></td>
+                                <td th:text="${copyId.barcode}"></td>
                                 <td>
-                                    <a th:href="${'/books/delete?bookId=' + bookId.bookId}">
+                                    <a th:href="${'/books/delete?copyId=' + copyId.copyId}">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

@@ -2,6 +2,7 @@ package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.databaseModels.Booking;
 import org.softwire.training.bookish.databaseModels.Copy;
+import org.softwire.training.bookish.databaseModels.CopyQuery;
 import org.softwire.training.bookish.services.CopyService;
 import org.softwire.training.bookish.viewModels.CopiesPageModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,7 @@ public class CopyController
     @RequestMapping("/copies")
     ModelAndView copies() {
 
-        List<Copy> allCopies = copyService.getAllCopies();
-        Copy.allCopies = allCopies;
+        List<CopyQuery> allCopies = copyService.getAllCopies();
 
         CopiesPageModel copiesPageModel = new CopiesPageModel();
         copiesPageModel.copies = allCopies;
