@@ -52,22 +52,11 @@ public class BookCopyService
 
     public void deleteBook(int bookId) {
 
-//        List<Integer> copyIds = jdbi.withHandle(handle ->
-//                );
-//
-//        for (Integer copyId : copyIds) {
-//            jdbi.withHandle(handle ->
-//                    handle.createUpdate("DELETE FROM bookings WHERE copyId = :id")
-//                            .bind("id", copyId)
-//                            .execute()
-//            );
-//        }
-
         jdbi.withHandle(handle ->
-                handle.createUpdate("DELETE " +
+                handle.createUpdate("DELETE bookish.bookings " +
                         "FROM bookish.bookings " +
                         "JOIN bookish.copies ON bookings.copyId = copies.copyId " +
-                        "WHERE copies.bookId = :id;")
+                        "WHERE copies.bookId = :id")
                 .bind("id", bookId)
                 .execute()
         );

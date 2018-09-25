@@ -59,7 +59,7 @@
                             <tr th:each="copyId : ${model.copies}">
                                 <td th:text="${copyId.barcode}"></td>
                                 <td>
-                                    <a th:href="${'/bookCopy/delete?copyId=' + copyId.copyId}">
+                                    <a th:href="${'/bookCopy/delete?copyId=' + copyId.copyId + '?bookId=' + model.book.bookId}">
                                         <i class="fas fa-trash text-danger"></i>
                                     </a>
                                 </td>
@@ -84,6 +84,7 @@
                                 <div class="form-group">
                                     <label>Barcode:</label>
                                     <input class="form-control" type="text" name="barcode">
+                                    <input type="hidden" name="bookId" th:value="${model.book.bookId}">
                                 </div>
                                 <div>
                                     <input class="btn btn-primary float-right" type="submit" value="Add Copy" />

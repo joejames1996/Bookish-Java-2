@@ -42,15 +42,23 @@ public class BookCopyController
 
         bookCopyService.addBookCopy(bookCopy);
 
-        return new RedirectView("/bookCopy");
+        return new RedirectView("/bookCopy?bookId=" + bookCopy.getBookId());
     }
 
+//    @RequestMapping("/bookCopy/add")
+//    RedirectView addBookCopy(@RequestParam int bookId, @RequestParam int barcode) {
+//
+//        bookCopyService.addBookCopy(bookId, barcode);
+//
+//        return new RedirectView("/bookCopy");
+//    }
+
     @RequestMapping("/bookCopy/delete")
-    RedirectView deleteBookCopy(@RequestParam int copyId) {
+    RedirectView deleteBookCopy(@RequestParam int copyId, @RequestParam int bookId) {
 
         bookCopyService.deleteBookCopy(copyId);
 
-        return new RedirectView("/bookCopy");
+        return new RedirectView("/bookCopy?bookId=" );
     }
 
     @RequestMapping("/bookCopy/deleteBook")

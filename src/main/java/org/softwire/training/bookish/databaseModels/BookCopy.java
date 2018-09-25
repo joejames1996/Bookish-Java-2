@@ -1,15 +1,10 @@
 package org.softwire.training.bookish.databaseModels;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BookCopy
 {
     private int copyId;
     private int bookId;
     private int barcode;
-
-    public static List<BookCopy> allBooks = new ArrayList<>();
 
     public void setCopyId(int copyId)
     {
