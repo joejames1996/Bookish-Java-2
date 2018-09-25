@@ -18,14 +18,17 @@ public class BookCopyService
 
     private Jdbi jdbi = Jdbi.create(connectionString);
 
-    public List<BookCopy> getAllBooks() {
+    public List<BookCopy> getAllBooks(int bookId) {
         List<BookCopy> books = jdbi.withHandle(handle ->
-            handle.createQuery("SELECT copies.copyId, books.title, books.subtitle, books.author, books.isbn, copies.barcode " +
+            handle.createQuery("SELECT copies.copyId, books.bookId, books.title, books.subtitle, books.author, books.isbn, copies.barcode " +
                     "FROM bookish.copies " +
                     "JOIN bookish.books ON books.bookId = copies.bookId " +
-                    "ORDER BY books.author, books.title, copies.barcode")
-                .mapToBean(BookCopy.class)
-                .list()
+                    "WHERE books.bookId = :id " +
+                    "ORDER BY books.author, books.title, copies.barcode"
+                    )
+                    .bind("id", bookId)
+                    .mapToBean(BookCopy.class)
+                    .list()
         );
 
         return books;
@@ -43,6 +46,41 @@ public class BookCopyService
         jdbi.withHandle(handle ->
             handle.createUpdate("DELETE FROM copies WHERE copyId = :id")
                 .bind("id", copyId)
+                .execute()
+        );
+    }
+
+    public void deleteBook(int bookId) {
+
+//        List<Integer> copyIds = jdbi.withHandle(handle ->
+//                );
+//
+//        for (Integer copyId : copyIds) {
+//            jdbi.withHandle(handle ->
+//                    handle.createUpdate("DELETE FROM bookings WHERE copyId = :id")
+//                            .bind("id", copyId)
+//                            .execute()
+//            );
+//        }
+
+        jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE " +
+                        "FROM bookish.bookings " +
+                        "JOIN bookish.copies ON bookings.copyId = copies.copyId " +
+                        "WHERE copies.bookId = :id;")
+                .bind("id", bookId)
+                .execute()
+        );
+
+        jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM copies WHERE bookId = :id")
+                        .bind("id", bookId)
+                        .execute()
+        );
+
+        jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM books WHERE bookId = :id")
+                .bind("id", bookId)
                 .execute()
         );
     }

@@ -19,12 +19,24 @@ public class BookService {
     {
         List<Book> books = jdbi.withHandle(handle ->
                 handle.createQuery("SELECT * FROM books " +
-                        "ORDER BY author, title")
+                        "ORDER BY author, title, isbn")
                 .mapToBean(Book.class)
                 .list()
                 );
 
         return books;
+    }
+
+    public Book getBook(int bookId)
+    {
+        Book book = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM books " +
+                        "WHERE bookId = :id")
+                .bind("id", bookId)
+                .mapToBean(Book.class)
+                .findOnly()
+                );
+        return book;
     }
 
     public void addBook(Book book) {

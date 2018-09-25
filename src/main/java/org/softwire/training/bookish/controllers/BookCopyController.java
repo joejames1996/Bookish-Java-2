@@ -3,6 +3,7 @@ package org.softwire.training.bookish.controllers;
 import org.softwire.training.bookish.databaseModels.Book;
 import org.softwire.training.bookish.databaseModels.BookCopy;
 import org.softwire.training.bookish.services.BookCopyService;
+import org.softwire.training.bookish.services.BookService;
 import org.softwire.training.bookish.viewModels.BookCopiesPageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +21,18 @@ public class BookCopyController
     @Autowired
     private BookCopyService bookCopyService;
 
-    @RequestMapping("/bookCopy")
-    ModelAndView bookCopies() {
+    @Autowired
+    private BookService bookService;
 
-        List<BookCopy> allCopies = bookCopyService.getAllBooks();
+    @RequestMapping("/bookCopy")
+    ModelAndView bookCopies(@RequestParam int bookId) {
+
+        List<BookCopy> allCopies = bookCopyService.getAllBooks(bookId);
+        Book book = bookService.getBook(bookId);
 
         BookCopiesPageModel bookCopiesPageModel = new BookCopiesPageModel();
         bookCopiesPageModel.copies = allCopies;
+        bookCopiesPageModel.book = book;
 
         return new ModelAndView("bookCopy", "model", bookCopiesPageModel);
     }
@@ -47,4 +53,10 @@ public class BookCopyController
         return new RedirectView("/bookCopy");
     }
 
+    @RequestMapping("/bookCopy/deleteBook")
+    RedirectView deleteBook(@RequestParam int bookId) {
+        bookCopyService.deleteBook(bookId);
+
+        return new RedirectView("/books");
+    }
 }

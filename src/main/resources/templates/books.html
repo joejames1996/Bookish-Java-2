@@ -11,7 +11,7 @@
             <!-- All books -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="float-left">All books</h2>
+                    <h2 class="float-left">All Books</h2>
                     <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#newBookModal"><i class="fas fa-plus"></i> New Book</button>
                 </div>
                 <div class="card-body">
@@ -22,6 +22,7 @@
                                 <th>Subtitle</th>
                                 <th>Author</th>
                                 <th>ISBN</th>
+                                <th></th>
                                 <th>Delete?</th>
                             </tr>
                         </thead>
@@ -31,6 +32,12 @@
                                 <td th:text="${bookId.subtitle}"></td>
                                 <td th:text="${bookId.author}"></td>
                                 <td th:text="${bookId.isbn}"></td>
+                                <td>
+                                    <a th:href="${'/bookCopy?bookId=' + bookId.bookId}">
+                                        View copies
+                                    </a>
+                                </td>
+
                                 <td>
                                     <a th:href="${'/books/delete?bookId=' + bookId.bookId}">
                                         <i class="fas fa-trash text-danger"></i>
