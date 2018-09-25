@@ -2,7 +2,7 @@ package org.softwire.training.bookish.services;
 
 import org.jdbi.v3.core.Jdbi;
 import org.softwire.training.bookish.databaseModels.Book;
-import org.softwire.training.bookish.databaseModels.CopyQuery;
+import org.softwire.training.bookish.databaseModels.BookQuery;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -16,13 +16,13 @@ public class BookService {
 
     private Jdbi jdbi = Jdbi.create(connectionString);
 
-    public List<CopyQuery> getAllBooks() {
-        List<CopyQuery> books = jdbi.withHandle(handle ->
+    public List<BookQuery> getAllBooks() {
+        List<BookQuery> books = jdbi.withHandle(handle ->
             handle.createQuery("SELECT copies.copyId, books.title, books.subtitle, books.author, books.isbn, copies.barcode " +
                     "FROM bookish.copies " +
                     "JOIN bookish.books ON books.bookId = copies.bookId " +
                     "ORDER BY books.author, books.title, copies.barcode")
-                .mapToBean(CopyQuery.class)
+                .mapToBean(BookQuery.class)
                 .list()
         );
 

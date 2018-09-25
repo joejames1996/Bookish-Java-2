@@ -3,7 +3,7 @@ package org.softwire.training.bookish.databaseModels;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CopyQuery
+public class BookQuery
 {
     private int copyId;
     private int bookId;
@@ -13,7 +13,7 @@ public class CopyQuery
     private String isbn;
     private int barcode;
 
-    public static List<CopyQuery> allBooks = new ArrayList<>();
+    public static List<BookQuery> allBooks = new ArrayList<>();
 
     public void setCopyId(int copyId)
     {
@@ -75,10 +75,10 @@ public class CopyQuery
         return isbn;
     }
 
-    public static CopyQuery getBookFromId(int bookId)
+    public static BookQuery getBookFromId(int bookId)
     {
-        CopyQuery book = new CopyQuery();
-        for(CopyQuery b : allBooks)
+        BookQuery book = new BookQuery();
+        for(BookQuery b : allBooks)
         {
             if(b.bookId == bookId)
             {

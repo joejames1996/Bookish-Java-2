@@ -5,3 +5,7 @@
 .home-card {
     text-align: center !important;
 }
+
+.card-body i {
+    margin-bottom: 20px;
+}
