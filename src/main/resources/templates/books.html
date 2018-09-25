@@ -17,26 +17,26 @@
                 <div class="card-body">
                     <table class="table">
                         <thead class="thead-dark">
-                        <tr>
-                            <th>Title</th>
-                            <th>Subtitle</th>
-                            <th>Author</th>
-                            <th>ISBN</th>
-                            <th>Delete?</th>
-                        </tr>
+                            <tr>
+                                <th>Title</th>
+                                <th>Subtitle</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Delete?</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="bookId : ${model.books}">
-                            <td th:text="${bookId.title}"></td>
-                            <td th:text="${bookId.subtitle}"></td>
-                            <td th:text="${bookId.author}"></td>
-                            <td th:text="${bookId.isbn}"></td>
-                            <td>
-                                <a th:href="${'/books/delete?bookId=' + bookId.bookId}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
+                            <tr th:each="bookId : ${model.books}">
+                                <td th:text="${bookId.title}"></td>
+                                <td th:text="${bookId.subtitle}"></td>
+                                <td th:text="${bookId.author}"></td>
+                                <td th:text="${bookId.isbn}"></td>
+                                <td>
+                                    <a th:href="${'/books/delete?bookId=' + bookId.bookId}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
