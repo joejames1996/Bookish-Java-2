@@ -4,6 +4,7 @@ import org.softwire.training.bookish.databaseModels.Book;
 import org.softwire.training.bookish.databaseModels.BookCopy;
 import org.softwire.training.bookish.services.BookCopyService;
 import org.softwire.training.bookish.services.BookService;
+import org.softwire.training.bookish.services.GeneralService;
 import org.softwire.training.bookish.viewModels.BookCopiesPageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ public class BookCopyController
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private GeneralService generalService;
 
     @RequestMapping("/bookCopy")
     ModelAndView bookCopies(@RequestParam int bookId) {
@@ -45,25 +49,18 @@ public class BookCopyController
         return new RedirectView("/bookCopy?bookId=" + bookCopy.getBookId());
     }
 
-//    @RequestMapping("/bookCopy/add")
-//    RedirectView addBookCopy(@RequestParam int bookId, @RequestParam int barcode) {
-//
-//        bookCopyService.addBookCopy(bookId, barcode);
-//
-//        return new RedirectView("/bookCopy");
-//    }
-
     @RequestMapping("/bookCopy/delete")
     RedirectView deleteBookCopy(@RequestParam int copyId, @RequestParam int bookId) {
 
         bookCopyService.deleteBookCopy(copyId);
 
-        return new RedirectView("/bookCopy?bookId=" );
+        return new RedirectView("/bookCopy?bookId=" + bookId);
     }
 
     @RequestMapping("/bookCopy/deleteBook")
     RedirectView deleteBook(@RequestParam int bookId) {
-        bookCopyService.deleteBook(bookId);
+
+        generalService.deleteBook(bookId);
 
         return new RedirectView("/books");
     }

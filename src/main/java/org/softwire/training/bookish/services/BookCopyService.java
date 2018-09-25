@@ -1,7 +1,6 @@
 package org.softwire.training.bookish.services;
 
 import org.jdbi.v3.core.Jdbi;
-import org.softwire.training.bookish.databaseModels.Book;
 import org.softwire.training.bookish.databaseModels.BookCopy;
 import org.springframework.stereotype.Service;
 
@@ -46,30 +45,6 @@ public class BookCopyService
         jdbi.withHandle(handle ->
             handle.createUpdate("DELETE FROM copies WHERE copyId = :id")
                 .bind("id", copyId)
-                .execute()
-        );
-    }
-
-    public void deleteBook(int bookId) {
-
-        jdbi.withHandle(handle ->
-                handle.createUpdate("DELETE bookish.bookings " +
-                        "FROM bookish.bookings " +
-                        "JOIN bookish.copies ON bookings.copyId = copies.copyId " +
-                        "WHERE copies.bookId = :id")
-                .bind("id", bookId)
-                .execute()
-        );
-
-        jdbi.withHandle(handle ->
-                handle.createUpdate("DELETE FROM copies WHERE bookId = :id")
-                        .bind("id", bookId)
-                        .execute()
-        );
-
-        jdbi.withHandle(handle ->
-                handle.createUpdate("DELETE FROM books WHERE bookId = :id")
-                .bind("id", bookId)
                 .execute()
         );
     }

@@ -46,12 +46,4 @@ public class BookService {
                 .execute()
         );
     }
-
-    public void deleteBook(int bookId) {
-        jdbi.withHandle(handle ->
-            handle.createUpdate("DELETE FROM books WHERE bookId = :id")
-                .bind("id", bookId)
-                .execute()
-        );
-    }
 }
