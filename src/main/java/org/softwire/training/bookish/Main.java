@@ -6,7 +6,7 @@ import org.softwire.training.bookish.databaseModels.Book;
 import java.sql.*;
 import java.util.List;
 
-public class Main {
+class Main {
     private static String hostname = "10.210.11.106:3306";
     private static String database = "bookish";
     private static String user = "bookish";

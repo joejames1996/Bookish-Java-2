@@ -44,6 +44,12 @@ public class BookCopyService
 
     public void deleteBookCopy(int copyId) {
         jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM bookings WHERE copyId = :id")
+                        .bind("id", copyId)
+                        .execute()
+        );
+
+        jdbi.withHandle(handle ->
             handle.createUpdate("DELETE FROM copies WHERE copyId = :id")
                 .bind("id", copyId)
                 .execute()
