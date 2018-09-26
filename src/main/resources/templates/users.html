@@ -29,7 +29,7 @@
                             <th>Forename</th>
                             <th>Surname</th>
                             <th>Date of Birth</th>
-                            <!--<th>View Books?</th>-->
+                            <th>View Books?</th>
                             <th>Delete?</th>
                         </tr>
                         </thead>
@@ -40,11 +40,11 @@
                             <td th:text="${userId.surname}"></td>
                             <td th:text="${userId.dateOfBirth}"></td>
 
-                            <!--<td>-->
-                                <!--<a href="">-->
-                                    <!--<i class="fas fa-book"></i>-->
-                                <!--</a>-->
-                            <!--</td>-->
+                            <td>
+                                <a href="">
+                                    <i class="fas fa-book"></i>
+                                </a>
+                            </td>
 
                             <td>
                                 <a th:href="${'/users/delete?userId=' + userId.userId}">

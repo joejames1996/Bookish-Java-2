@@ -5,6 +5,7 @@ public class BookCopy
     private int copyId;
     private int bookId;
     private int barcode;
+    private int userId;
 
     public void setCopyId(int copyId)
     {
@@ -34,5 +35,15 @@ public class BookCopy
     public int getBarcode()
     {
         return barcode;
+    }
+
+    public void setUserId(int userId)
+    {
+        this.userId = userId;
+    }
+
+    public int getUserId()
+    {
+        return userId;
     }
 }

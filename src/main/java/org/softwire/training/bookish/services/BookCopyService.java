@@ -19,9 +19,10 @@ public class BookCopyService
 
     public List<BookCopy> getAllBooks(int bookId) {
         List<BookCopy> books = jdbi.withHandle(handle ->
-            handle.createQuery("SELECT copies.copyId, books.bookId, books.title, books.subtitle, books.author, books.isbn, copies.barcode " +
+            handle.createQuery("SELECT copies.copyId, bookings.userId, books.bookId, books.title, books.subtitle, books.author, books.isbn, copies.barcode " +
                     "FROM bookish.copies " +
                     "JOIN bookish.books ON books.bookId = copies.bookId " +
+                    "LEFT JOIN bookish.bookings ON copies.copyId = bookings.copyId " +
                     "WHERE books.bookId = :id " +
                     "ORDER BY books.author, books.title, copies.barcode"
                     )

@@ -52,14 +52,20 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>Barcode</th>
+                                <th>In Stock?</th>
                                 <th>Delete?</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="copyId : ${model.copies}">
-                                <td th:text="${copyId.barcode}"></td>
+                            <tr th:each="copy : ${model.copies}">
+                                <td th:text="${copy.barcode}"></td>
+
                                 <td>
-                                    <a th:href="${'/bookCopy/delete?copyId=' + copyId.copyId + '&bookId=' + model.book.bookId}">
+                                    <i th:class="${copy.userId > 0}? 'fas fa-times text-danger' : 'fas fa-check text-success'"></i>
+                                </td>
+
+                                <td>
+                                    <a th:href="${'/bookCopy/delete?copyId=' + copy.copyId + '&bookId=' + model.book.bookId}">
                                         <i class="fas fa-trash text-danger"></i>
                                     </a>
                                 </td>
