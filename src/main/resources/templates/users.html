@@ -41,7 +41,7 @@
                             <td th:text="${userId.dateOfBirth}"></td>
 
                             <td>
-                                <a href="">
+                                <a th:href="${'/users/books?userId=' + userId.userId}">
                                     <i class="fas fa-book"></i>
                                 </a>
                             </td>

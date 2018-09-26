@@ -29,6 +29,18 @@ public class UserService
         return users;
     }
 
+    public User getUser(int userId) {
+        User user = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM users " +
+                        "WHERE userId = :id")
+                .bind("id", userId)
+                .mapToBean(User.class)
+                .findOnly()
+                );
+
+        return user;
+    }
+
     public void addUser(User user) {
         jdbi.withHandle(handle ->
             handle.createUpdate("INSERT INTO users (firstName, surname, userName, password, dateOfBirth) VALUES (:firstName, :surname, :userName, :password, :dateOfBirth)")

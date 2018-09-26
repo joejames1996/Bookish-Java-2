@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+    <head>
+        <title>Bookish - Users</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container body-content">
+
+            <!-- Selected book details -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="float-left">User Details</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>Forename</td>
+                                <td th:text="${model.user.firstName}"></td>
+                            </tr>
+
+                            <tr>
+                                <td>Surname</td>
+                                <td th:text="${model.user.surname}"></td>
+                            </tr>
+
+                            <tr>
+                                <td>Username</td>
+                                <td th:text="${model.user.userName}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Copies -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="float-left">Books On Loan</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Barcode</th>
+                                <th>Date Taken</th>
+                                <th>Date Due</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="copy : ${model.bookings}">
+                                <td th:text="${copy.title}"></td>
+                                <td th:text="${copy.author}"></td>
+                                <td th:text="${copy.barcode}"></td>
+                                <td th:text="${copy.dateTaken}"></td>
+                                <td th:text="${copy.dateDue}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
