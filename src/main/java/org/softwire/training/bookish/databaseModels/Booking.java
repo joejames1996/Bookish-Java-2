@@ -2,6 +2,8 @@ package org.softwire.training.bookish.databaseModels;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +63,10 @@ public class Booking
 
     public void setDateDue(Date dateDue)
     {
-        this.dateDue = dateDue;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateDue);
+        calendar.add(Calendar.DATE, 1);
+        this.dateDue = calendar.getTime();
     }
 
     public Date getDateDue()
