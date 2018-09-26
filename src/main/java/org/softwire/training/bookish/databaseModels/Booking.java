@@ -2,7 +2,6 @@ package org.softwire.training.bookish.databaseModels;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
