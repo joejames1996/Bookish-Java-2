@@ -20,7 +20,8 @@ public class UserService
 
     public List<User> getAllUsers() {
         List<User> users = jdbi.withHandle(handle ->
-            handle.createQuery("SELECT * FROM users")
+            handle.createQuery("SELECT * FROM users " +
+                    "ORDER BY surname, firstName, userName")
                 .mapToBean(User.class)
                 .list()
         );
@@ -37,6 +38,12 @@ public class UserService
     }
 
     public void deleteUser(int userId) {
+        jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM bookings WHERE userId = :id")
+                .bind("id", userId)
+                .execute()
+        );
+
         jdbi.withHandle(handle ->
             handle.createUpdate("DELETE FROM users WHERE userId = :id")
                 .bind("id", userId)

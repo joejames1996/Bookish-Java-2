@@ -15,12 +15,19 @@
                     <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#newUserModal"><i class="fas fa-plus"></i> New User</button>
                 </div>
                 <div class="card-body">
-                    <table class="table">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+                        </div>
+                        <input class="form-control" type="text" id="searchBox" onkeyup="filterTable('usersTable')" placeholder="Search for usernames...">
+                    </div>
+
+                    <table id="usersTable" class="table">
                         <thead class="thead-light">
                         <tr>
+                            <th>Username</th>
                             <th>Forename</th>
                             <th>Surname</th>
-                            <th>Username</th>
                             <th>Date of Birth</th>
                             <th>View Books?</th>
                             <th>Delete?</th>
@@ -28,9 +35,9 @@
                         </thead>
                         <tbody>
                         <tr th:each="userId : ${model.users}">
+                            <td th:text="${userId.userName}"></td>
                             <td th:text="${userId.firstName}"></td>
                             <td th:text="${userId.surname}"></td>
-                            <td th:text="${userId.userName}"></td>
                             <td th:text="${userId.dateOfBirth}"></td>
                             <td>
                                 <a href="">

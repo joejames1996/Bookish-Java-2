@@ -3,6 +3,7 @@ package org.softwire.training.bookish.services;
 import org.jdbi.v3.core.Jdbi;
 import org.softwire.training.bookish.databaseModels.Booking;
 import org.softwire.training.bookish.databaseModels.BookingQuery;
+import org.softwire.training.bookish.databaseModels.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,8 @@ public class BookingService
                         "FROM bookish.bookings " +
                         "JOIN bookish.copies ON copies.copyId = bookings.copyId " +
                         "JOIN bookish.books ON books.bookId = copies.bookId " +
-                        "JOIN bookish.users ON users.userId = bookings.userId;")
+                        "JOIN bookish.users ON users.userId = bookings.userId " +
+                        "ORDER BY dateDue, surname, firstName, isbn")
                         .mapToBean(BookingQuery.class)
                         .list()
         );
@@ -32,9 +34,35 @@ public class BookingService
         return bookings;
     }
 
+    public List<BookingQuery> getAllBooks()
+    {
+        List<BookingQuery> books = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT books.bookId, copies.bookId, copies.copyId, books.title, books.author, books.isbn, copies.barcode " +
+                        "FROM bookish.copies " +
+                        "JOIN bookish.books ON copies.bookId = books.bookId " +
+                        "WHERE copies.copyId NOT IN (SELECT bookings.copyId FROM bookish.bookings)")
+                        .mapToBean(BookingQuery.class)
+                        .list()
+        );
+
+        return books;
+    }
+
+    public List<User> getAllUsers() {
+        List<User> users = jdbi.withHandle(handle ->
+                handle.createQuery("SELECT users.userId, users.firstName, users.surname, users.userName " +
+                        "FROM bookish.users " +
+                        "ORDER BY surname, firstName, userId")
+                .mapToBean(User.class)
+                .list()
+        );
+
+        return users;
+    }
+
     public void addBooking(Booking booking) {
         jdbi.withHandle(handle ->
-                handle.createUpdate("INSERT INTO bookings (copyId, userId, dateTaken, dateDue) VALUES (:copyId, :userId, :dateTaken, :dateDue)")
+                handle.createUpdate("INSERT INTO bookings (copyId, userId, dateDue, dateTaken) VALUES (:copyId, :userId, :dateDue, CURDATE())")
                         .bindBean(booking)
                         .execute()
         );

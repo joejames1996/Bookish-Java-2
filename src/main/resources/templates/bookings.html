@@ -58,26 +58,38 @@
                         </div>
                         <div class="modal-body">
                             <form id="messageForm" th:action="@{/bookings/add}" method="post">
+                                <!--<div class="form-group">-->
+                                    <!--<label for="selectBook">Book:</label>-->
+                                    <!--<select th:each="bookId : ${model.book}" class="form-control" id="selectBook">-->
+                                        <!--<option th:text="${bookId.title}"></option>-->
+                                    <!--</select>-->
+                                <!--</div>-->
+
                                 <div class="form-group">
                                     <label for="selectBook">Book:</label>
-                                    <select class="form-control" id="selectBook">
-                                        <option>Book A</option>
-                                        <option>Book B</option>
+                                    <select class="form-control" id="selectBook" name="copyId">
+                                        <option>Select book</option>
+                                        <option th:each="copy : ${model.books}"
+                                                th:value="${copy.copyId}"
+                                                th:utext="${copy.barcode + ' - ' + copy.title + ', ' + copy.author}" />
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="selectUser">User:</label>
-                                    <select class="form-control" id="selectUser">
-                                        <option>User A</option>
-                                        <option>User B</option>
+                                    <select class="form-control" id="selectUser" name="userId">
+                                        <option>Select user</option>
+                                        <option th:each="user : ${model.users}"
+                                                th:value="${user.userId}"
+                                                th:utext="${user.firstName + ' ' + user.surname + ' - ' + user.userName}" />
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Due date:</label>
-                                    <input class="form-control" type="date" name="author">
+                                    <input class="form-control" type="date" name="dateDue">
                                 </div>
+
                                 <div>
                                     <input class="btn btn-primary float-right" type="submit" value="Add Booking" />
                                 </div>

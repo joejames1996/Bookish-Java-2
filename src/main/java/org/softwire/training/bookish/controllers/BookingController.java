@@ -23,9 +23,13 @@ public class BookingController
     ModelAndView bookings() {
 
         List<BookingQuery> allBookings = bookingService.getAllBookings();
+        List<BookingQuery> allBooks = bookingService.getAllBooks();
+        List<User> allUsers = bookingService.getAllUsers();
 
         BookingsPageModel bookingsPageModel = new BookingsPageModel();
         bookingsPageModel.bookings = allBookings;
+        bookingsPageModel.books = allBooks;
+        bookingsPageModel.users = allUsers;
 
         return new ModelAndView("bookings", "model", bookingsPageModel);
     }

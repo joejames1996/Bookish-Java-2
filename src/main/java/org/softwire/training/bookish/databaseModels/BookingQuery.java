@@ -23,8 +23,6 @@ public class BookingQuery
     private Date dateDue;
 
 
-    //public static List<Booking> allBookings;
-
     public void setBookingId(int bookingId)
     {
         this.bookingId = bookingId;

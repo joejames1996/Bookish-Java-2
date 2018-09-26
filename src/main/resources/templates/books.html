@@ -15,7 +15,14 @@
                     <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#newBookModal"><i class="fas fa-plus"></i> New Book</button>
                 </div>
                 <div class="card-body">
-                    <table class="table">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+                        </div>
+                        <input class="form-control" type="text" id="searchBox" onkeyup="filterTable('booksTable')" placeholder="Search for book titles...">
+                    </div>
+
+                    <table class="table" id="booksTable">
                         <thead class="thead-light">
                             <tr>
                                 <th>Title</th>
