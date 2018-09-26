@@ -19,7 +19,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
                         </div>
-                        <input class="form-control" type="text" id="searchBox" onkeyup="filterTable('usersTable')" placeholder="Search for usernames...">
+                        <input class="form-control" type="text" id="searchBox" onkeyup="filterTable('usersTable', 0, 'searchBox')" placeholder="Enter username">
                     </div>
 
                     <table id="usersTable" class="table">
@@ -29,7 +29,7 @@
                             <th>Forename</th>
                             <th>Surname</th>
                             <th>Date of Birth</th>
-                            <th>View Books?</th>
+                            <!--<th>View Books?</th>-->
                             <th>Delete?</th>
                         </tr>
                         </thead>
@@ -39,11 +39,13 @@
                             <td th:text="${userId.firstName}"></td>
                             <td th:text="${userId.surname}"></td>
                             <td th:text="${userId.dateOfBirth}"></td>
-                            <td>
-                                <a href="">
-                                    <i class="fas fa-book"></i>
-                                </a>
-                            </td>
+
+                            <!--<td>-->
+                                <!--<a href="">-->
+                                    <!--<i class="fas fa-book"></i>-->
+                                <!--</a>-->
+                            <!--</td>-->
+
                             <td>
                                 <a th:href="${'/users/delete?userId=' + userId.userId}">
                                     <i class="fas fa-trash text-danger"></i>

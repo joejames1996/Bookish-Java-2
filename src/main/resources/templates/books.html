@@ -19,7 +19,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
                         </div>
-                        <input class="form-control" type="text" id="searchBox" onkeyup="filterTable('booksTable')" placeholder="Search for book titles...">
+                        <input class="form-control" type="text" id="titleBox" onkeyup="filterBooksTable()" placeholder="Enter book title">
+                        <input class="form-control" type="text" id="authorBox" onkeyup="filterBooksTable()" placeholder="Enter author">
                     </div>
 
                     <table class="table" id="booksTable">
