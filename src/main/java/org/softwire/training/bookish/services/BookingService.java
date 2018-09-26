@@ -48,18 +48,6 @@ public class BookingService
         return books;
     }
 
-    public List<User> getAllUsers() {
-        List<User> users = jdbi.withHandle(handle ->
-                handle.createQuery("SELECT users.userId, users.firstName, users.surname, users.userName " +
-                        "FROM bookish.users " +
-                        "ORDER BY surname, firstName, userId")
-                .mapToBean(User.class)
-                .list()
-        );
-
-        return users;
-    }
-
     public void addBooking(Booking booking) {
         jdbi.withHandle(handle ->
                 handle.createUpdate("INSERT INTO bookings (copyId, userId, dateDue, dateTaken) VALUES (:copyId, :userId, :dateDue, CURDATE())")

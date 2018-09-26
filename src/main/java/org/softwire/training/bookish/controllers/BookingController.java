@@ -2,6 +2,7 @@ package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.databaseModels.*;
 import org.softwire.training.bookish.services.BookingService;
+import org.softwire.training.bookish.services.UserService;
 import org.softwire.training.bookish.viewModels.BookingsPageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +20,15 @@ public class BookingController
     @Autowired
     private BookingService bookingService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/bookings")
     ModelAndView bookings() {
 
         List<BookingQuery> allBookings = bookingService.getAllBookings();
         List<BookingQuery> allBooks = bookingService.getAllBooks();
-        List<User> allUsers = bookingService.getAllUsers();
+        List<User> allUsers = userService.getAllUsers();
 
         BookingsPageModel bookingsPageModel = new BookingsPageModel();
         bookingsPageModel.bookings = allBookings;

@@ -23,7 +23,6 @@ public class UserController
     ModelAndView users() {
 
         List<User> allUsers = userService.getAllUsers();
-        User.allUsers = allUsers;
 
         UsersPageModel usersPageModel = new UsersPageModel();
         usersPageModel.users = allUsers;

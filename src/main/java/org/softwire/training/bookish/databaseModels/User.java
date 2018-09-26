@@ -2,9 +2,7 @@ package org.softwire.training.bookish.databaseModels;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class User
 {
@@ -16,8 +14,6 @@ public class User
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateOfBirth;
-
-    public static List<User> allUsers = new ArrayList<>();
 
     public void setUserId(int userId)
     {
@@ -74,19 +70,5 @@ public class User
     public Date getDateOfBirth()
     {
         return dateOfBirth;
-    }
-
-    public static User getUserFromId(int userId)
-    {
-        User user = new User();
-        for(User u : allUsers)
-        {
-            if(u.userId == userId)
-            {
-                user = u;
-                break;
-            }
-        }
-        return user;
     }
 }

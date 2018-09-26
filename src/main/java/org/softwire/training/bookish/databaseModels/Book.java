@@ -1,16 +1,11 @@
 package org.softwire.training.bookish.databaseModels;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Book {
     private int bookId;
     private String title;
     private String subtitle;
     private String author;
     private String isbn;
-
-    public static List<Book> allBooks = new ArrayList<>();
 
     public void setBookId(int bookId)
     {
@@ -60,19 +55,5 @@ public class Book {
     public String getIsbn()
     {
         return isbn;
-    }
-
-    public static Book getBookFromId(int bookId)
-    {
-        Book book = new Book();
-        for(Book b : allBooks)
-        {
-            if(b.bookId == bookId)
-            {
-                book = b;
-                break;
-            }
-        }
-        return book;
     }
 }
